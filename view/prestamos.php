@@ -56,6 +56,12 @@
                     <p>Prestamos</p>
                 </a>
             </li>
+            <li>
+            <a class="nav-link" href="./localidad.php">
+                <i class="fas fa-globe-africa"></i>
+                <p>Localidades</p>
+            </a>
+        </li>
         </ul>
     </div>
 </div>

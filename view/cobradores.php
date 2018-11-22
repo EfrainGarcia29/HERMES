@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <?php 
+
 require_once('../dao/cobradoresDAO.php');
 $objusuariosDao = new cobradoresDAO(); 
 $usuarios = $objusuariosDao->allCobradores();
 ?>
+
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
@@ -60,6 +62,12 @@ $usuarios = $objusuariosDao->allCobradores();
             <a class="nav-link" href="./prestamos.php">
                 <i class="fas fa-money-bill"></i>
                 <p>Prestamos</p>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" href="./localidad.php">
+                <i class="fas fa-globe-africa"></i>
+                <p>Localidades</p>
             </a>
         </li>
     </ul>
@@ -124,6 +132,95 @@ $usuarios = $objusuariosDao->allCobradores();
                         <div class="card-header ">
                         <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
                         </div>
+<!-------------------------------------  Nuevo cobrador  ------------------------------------------------------------------------------------------------------------------------------->
+
+
+                         <div class="modal" id="modalCrearUsuario" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <strong class="modal-title" id="modalCrearUsuarioLabel">Nuevo Cobrador</strong>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <form method="post" action="../../control/accion/act_insertarUsuario.php">
+                                          <div class="modal-body" >
+                                             <section>
+                                                  <div class="form-group col-md-12">
+                                                      <label for="nombre">Nombres:</label>
+                                                      <input class="form-control form-control-sm" type="text" placeholder="Nombre" id="nombre" REQUIRED name="nombres">
+                                                  </div>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="fN">Apellidos:</label>
+                                                     <input class="form-control form-control-sm" type="text" placeholder="Apellidos" id="ape" REQUIRED name="fNacimiento">
+                                                  </div>
+                                              </section>
+                                              <section>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="Nombre">Cedula de ciudadania:</label>
+                                                     <input class="form-control form-control-sm" type="text" placeholder="Nombre" id="Nombre" REQUIRED name="nombre">
+                                                  </div>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="Celular">Celular:</label>
+                                                     <input class="form-control form-control-sm" type="text" placeholder="Celular" id="Celular" REQUIRED name="apellido">
+                                                  </div>
+                                              </section>
+                                          
+                                                  <div class="form-group col-md-12">
+                                                     <label for="usuario">E-mail:</label>
+                                                     <input class="form-control form-control-sm" placeholder="Usuario" type="text" id="usuario" REQUIRED name="usuario">
+                                                  </div>
+                    
+                                                  <div class="form-group col-md-12">
+                                                     <label for="contra">Contraseña:</label>
+                                                     <input class="form-control form-control-sm" placeholder="Contraseña" type="password" id="contra" REQUIRED name="password">
+                                                  </div>
+                                              
+                                              <section>
+                                
+                                                  <div class="form-group col-md-12">
+                                                     <label for="telefono">Estado:</label>
+                                                    <div>
+                                                        <label class="radio-inline"></label>
+                                                             <select class="form-control" id="tipo" name="tipoUser">
+                                                                 <option  type="radio" name="estado" value="A">Activo</option>
+                                                                 <option  type="radio" name="estado" value="I">Inactivo</option>
+                                                                 <option  type="radio" name="estado" value="V">Vacaciones</option>
+                                                            </select>
+                                                    </div>
+                                                  </div>
+                                              </section>
+                                              <section>
+                                                  <div class="form-group col-md-12">
+                                                    <label>Género:</label>
+                                                    <div>
+                                                        <label class="radio-inline">
+                                                            <select class="form-control" id="tipo" name="tipoUser">
+                                                                <option  type="radio" name="genero" value="M">Masculino</option>
+                                                                <option  type="radio" name="genero" value="F">Femenino</option>
+                                                            </select>
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group ">
+                                                     <label>Tipo:</label>
+                                                      <select class="form-control" id="tipo" name="tipoUser">
+                                                          <option value="3">Cobrador</option>
+                                                      </select>
+                                                  </div>
+                                              </section>
+                                          </div>
+                                          <div class="modal-footer">
+                                             <input type="submit" class="btn btn-primary">
+                                          </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                        
+<!-----------------------------------------Fin cobrador  ------------------------------------------------------------------------------------------------------------------------------->
+                        
+                        
                         <div class="card-body table-full-width table-responsive">
                             <table class="table table-responsive table-boarde table-hover">
                             <thead class="table-info">

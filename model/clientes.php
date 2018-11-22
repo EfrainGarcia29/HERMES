@@ -1,15 +1,13 @@
 <?php 
 
-class Clientes
+include ("usuarios.php");
+
+class Clientes extends Usuarios  
 	{
 		private $idUsuarios;
-		private $nombres;
-		private $apellidos;
-		private $cedula;
 		private $direccion;
-		private $email;
-		private $usuario;
-		private $password;
+		private $cedula;
+		
 
 		public function __construct($idUsuarios, $nombres, $apellidos, $cedula, $direccion, $email, $usuario, $password){
 
@@ -31,22 +29,6 @@ class Clientes
 			$this->idUsuarios = $idUsuarios;
 		}
 
-		public function getnombres() {
-			return $this->nombres;
-		}
-
-		public function setnombres($nombres) {
-			$this->nombres = $nombres;
-		}
-
-		public function getapellidos() {
-			return $this->apellidos;
-		}
-
-		public function setapellidos($apellidos) {
-			$this->apellidos = $apellidos;
-		}
-
 		public function getcedula() {
 			return $this->cedula;
 		}
@@ -61,30 +43,6 @@ class Clientes
 
 		public function setdireccion($direccion) {
 			$this->direccion = $direccion;
-		}
-
-		public function getemail() {
-			return $this->email;
-		}
-
-		public function setemail($email) {
-			$this->email = $email;
-		}
-
-		public function getusuario() {
-			return $this->usuario;
-		}
-
-		public function setusuario($usuario) {
-			$this->usuario = $usuario;
-		}
-
-		public function getpassword() {
-			return $this->password;
-		}
-
-		public function setpassword($password) {
-			$this->password = $password;
 		}
 
 	}

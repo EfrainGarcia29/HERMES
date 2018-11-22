@@ -32,40 +32,22 @@ $usuarios = $objusuariosDao->allUsuarios();
       <div class="sidebar-wrapper">
         <div class="logo">
           <a href="http://www.creative-tim.com" class="simple-text">
-           Administrador 
+           Cliente 
          </a>
        </div>
        <ul class="nav">
-        <li>
-          <a class="nav-link" href="./cobradores.php ">
-           <i class="fas fa-users-cog"></i>
-           <p>Cobradores</p>
-         </a>
-       </li>
        <li class="nav-item active">
-        <a class="nav-link" href="./clientes.php">
+        <a class="nav-link" href="./PrestamosC.php">
           <i class="fas fa-users"></i>
-          <p>Clientes</p>
-        </a>
-      </li>
-      <li>
-        <a class="nav-link" href="./pagos.php">
-          <i class="fas fa-hand-holding-usd"></i>
-          <p>Pagos</p>
-        </a>
-      </li>
-      <li>
-        <a class="nav-link" href="./prestamos.php">
-          <i class="fas fa-money-bill"></i>
           <p>Prestamos</p>
         </a>
       </li>
       <li>
-        <a class="nav-link" href="./localidad.php">
-          <i class="fas fa-globe-africa"></i>
-          <p>Localidades</p>
+        <a class="nav-link" href="./CreditosC.php">
+          <i class="fas fa-hand-holding-usd"></i>
+          <p>Creditos</p>
         </a>
-      </li>            
+      </li>
     </ul>
   </div>
 </div>

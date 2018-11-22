@@ -1,0 +1,25 @@
+header { 
+ background:#BCA9F5 ;
+ color: white;
+ 
+	
+}
+.main{
+	background: #E0E6F8;
+}
+article {
+	background: #E0E6F8; 
+	font: #E0E0F8;
+}
+aside{
+	background: #BCA9F5;
+
+}
+.color {
+	background: #F78181;
+}
+footer{
+	background:#151515 ;
+ color: white;
+	
+}

@@ -32,40 +32,22 @@ $usuarios = $objusuariosDao->allUsuarios();
       <div class="sidebar-wrapper">
         <div class="logo">
           <a href="http://www.creative-tim.com" class="simple-text">
-           Administrador 
+           Cliente 
          </a>
        </div>
        <ul class="nav">
-        <li>
-          <a class="nav-link" href="./cobradores.php ">
-           <i class="fas fa-users-cog"></i>
-           <p>Cobradores</p>
-         </a>
-       </li>
        <li class="nav-item active">
-        <a class="nav-link" href="./clientes.php">
+        <a class="nav-link" href="./PrestamosC.php">
           <i class="fas fa-users"></i>
-          <p>Clientes</p>
-        </a>
-      </li>
-      <li>
-        <a class="nav-link" href="./pagos.php">
-          <i class="fas fa-hand-holding-usd"></i>
-          <p>Pagos</p>
-        </a>
-      </li>
-      <li>
-        <a class="nav-link" href="./prestamos.php">
-          <i class="fas fa-money-bill"></i>
           <p>Prestamos</p>
         </a>
       </li>
       <li>
-        <a class="nav-link" href="./localidad.php">
-          <i class="fas fa-globe-africa"></i>
-          <p>Localidades</p>
+        <a class="nav-link" href="./CreditosC.php">
+          <i class="fas fa-hand-holding-usd"></i>
+          <p>Creditos</p>
         </a>
-      </li>            
+      </li>
     </ul>
   </div>
 </div>
@@ -133,9 +115,6 @@ $usuarios = $objusuariosDao->allUsuarios();
             <div class="card-header ">
               <h4 class="card-title">Clientes</h4>
             </div>
-            <div class="card-header ">
-              <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
-            </div>
             <br><br>
 
             <!------------------------------------------------------------Modal--------------------------------------------------------------------------------------->
@@ -144,7 +123,7 @@ $usuarios = $objusuariosDao->allUsuarios();
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <strong class="modal-title" id="modalCrearUsuarioLabel">Nuevo Cliente<??></strong>
+                    <strong class="modal-title" id="modalCrearUsuarioLabel">Bienvenido<??></strong>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -154,49 +133,18 @@ $usuarios = $objusuariosDao->allUsuarios();
                       <div class="row">
 
                         <div class="form-group col-md-12">
-                          <label for="nombre">Nombres:</label>
+                          <label for="nombre">Valor Pago:</label>
                           <input class="form-control form-control-sm" type="text" placeholder="Nombres" id="nombre" REQUIRED name="nombre">
                         </div>
                         <div class="form-group col-md-12">
-                         <label for="fN">Apellidos:</label>
+                         <label for="fN">Fecha:</label>
                          <input class="form-control form-control-sm" type="text" placeholder="Apellidos" id="apellido" REQUIRED name="apellido">
                        </div>
 
                        <div class="form-group col-md-12">
-                         <label for="usuario">Usuario:</label>
+                         <label for="usuario">Nombre Cobrador:</label>
                          <input class="form-control form-control-sm" placeholder="Usuario" type="text" id="usuario" REQUIRED name="usuario">
                        </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="contra">Password:</label>
-                         <input class="form-control form-control-sm" placeholder="Contraseña" type="password" id="password" REQUIRED name="password">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="email">Correo Electrónico:</label>
-                         <input class="form-control form-control-sm" placeholder="Correo" type="email" id="email" REQUIRED name="email">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="Nombre">Img:</label>
-                         <input class="form-control form-control-sm" type="file" placeholder="img" id="img">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="usuario">Direccion:</label>
-                         <input class="form-control form-control-sm" placeholder="Direccion" type="direccion" id="direccion" REQUIRED name="direccion">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="Nombre">Telefono:</label>
-                         <input class="form-control form-control-sm" type="number" placeholder="telefono" id="telefono" REQUIRED name="telefono">
-                       </div>
-                       
-                       <div class="form-group col-md-12">
-                         <label for="Nombre">Cedula:</label>
-                         <input class="form-control form-control-sm" type="number" placeholder="cedula" id="cedula" REQUIRED name="cedula">
-                       </div>
-
                        <select class="form-control" id="idLocalidad" name="localidad">
                          <option  name="estado" value="1">San Diego</option>
                          <option  name="estado" value="2">El Reposo</option>

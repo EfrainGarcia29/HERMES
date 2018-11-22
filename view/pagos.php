@@ -55,6 +55,12 @@
                     <p>Prestamos</p>
                 </a>
             </li>
+            <li>
+                <a class="nav-link" href="./localidad.php">
+                    <i class="fas fa-globe-africa"></i>
+                    <p>Localidades</p>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
@@ -125,6 +131,93 @@
                         <div class="card-header ">
                             <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
                         </div>
+                        
+<!-------------------------------------------Nuevo pago--------------------------------------------------------------------------------------------------------->
+
+
+                        <div class="modal" id="modalCrearUsuario" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <strong class="modal-title" id="modalCrearUsuarioLabel">Nuevo Cliente</strong>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                      <form method="post" action="../../control/accion/act_insertarUsuario.php">
+                                          <div class="modal-body" >
+                                             <section>
+                                                  <div class="form-group col-md-12">
+                                                      <label for="nombre">Nombres:</label>
+                                                      <input class="form-control form-control-sm" type="text" placeholder="Nombre" id="nombre" REQUIRED name="apellido">
+                                                  </div>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="fN">Apellidos:</label>
+                                                     <input class="form-control form-control-sm" type="text" placeholder="Apellidos" id="ape
+                                            " REQUIRED name="fNacimiento">
+                                                  </div>
+                                              </section>
+                                              <section>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="Nombre">Nombre:</label>
+                                                     <input class="form-control form-control-sm" type="text" placeholder="Nombre" id="Nombre" REQUIRED name="nombre">
+                                                  </div>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="Apellido">Apellido:</label>
+                                                     <input class="form-control form-control-sm" type="text" placeholder="Apellido" id="Apellido" REQUIRED name="apellido">
+                                                  </div>
+                                              </section>
+                                              <section>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="usuario">Usuario:</label>
+                                                     <input class="form-control form-control-sm" placeholder="Usuario" type="text" id="usuario" REQUIRED name="usuario">
+                                                  </div>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="contra">Contraseña:</label>
+                                                     <input class="form-control form-control-sm" placeholder="Contraseña" type="password" id="contra" REQUIRED name="password">
+                                                  </div>
+                                              </section>
+                                              <section>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="email">Correo Electrónico:</label>
+                                                     <input class="form-control form-control-sm" placeholder="Correo" type="email" id="email" REQUIRED name="email">
+                                                  </div>
+                                                  <div class="form-group col-md-12">
+                                                     <label for="telefono">Teléfono:</label>
+                                                     <input class="form-control form-control-sm" placeholder="Teléfono" type="number" id="telefono" REQUIRED name="telefono">
+                                                  </div>
+                                              </section>
+                                              <section>
+                                                  <div class="form-group col-md-12">
+                                                    <label>Género:</label>
+                                                    <div>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="genero" value="M"> Masculino
+                                                        </label>
+                                                        <label class="radio-inline">
+                                                            <input type="radio" name="genero" value="F"> 
+                                                            Femenino
+                                                        </label>
+                                                    </div>
+                                                  </div>
+                                                  <div class="form-group ">
+                                                     <label>Tipo:</label>
+                                                      <select class="form-control" id="tipo" name="tipoUser">
+                                                          <option value="3">Huesped</option>
+                                                      </select>
+                                                  </div>
+                                              </section>
+                                          </div>
+                                          <div class="modal-footer">
+                                             <input type="submit" class="btn btn-primary">
+                                          </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+<!---------------------------------------  Fin pago-------------------------------------------------------------------------------------------------------------->
+                        
+                        
                         <div class="card-body table-full-width table-responsive">
                             <table class="table responsive boarde">
                                 <thead class="bg-info">
