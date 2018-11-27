@@ -7,6 +7,9 @@ class Cobradores extends Usuarios
 		private $idUsuarios;
 		private $cedula;
 		private $telefono;
+		private $estado;
+		private $nombre;
+		
 
 		public function __construct($idUsuarios, $nombres, $apellidos, $cedula, $telefono, $email, $usuario, $password, $estado, $nombre){
 
@@ -55,7 +58,7 @@ class Cobradores extends Usuarios
 		}
 		
 		public function getnombre() {
-			return $this->nombre;
+			return $nombre->nombre;
 		}
 
 		public function setnombre($nombre) {

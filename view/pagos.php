@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
 
+require_once('../dao/pagosDAO.php');
+$objpagosDao = new pagosDAO(); 
+$pagos = $objpagosDao->allpagos();
+?>
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../assets/css/stylo.css">
@@ -109,7 +114,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#pablo">
+                        <a class="nav-link" href="index.php">
                             <span class="no-icon">Cerrar Sesion</span>
                         </a>
                     </li>
@@ -223,29 +228,27 @@
                                 <thead class="bg-info">
                                     <tr style="color: #FFFFFF">
                                         <th scope="col">#</th>
-                                        <th scope="col">Cliente</th>
                                         <th scope="col">Valor Pago</th>
                                         <th scope="col">Fecha Pago</th>
                                         <th scope="col">Prestamo</th>
-                                        <th scope="col">Localidad</th>
-                                        <th scope="col">Cobrador</th>
+                                        <th scope="col">Cliente</th>
                                         <th scope="col">Editar</th>
                                     </tr>
                                     <tbody>
-                                        <tr>
-                                            <th scope="row"></th>
-                                            <th scope="row"></th>
-                                            <th scope="row"></th>
-                                            <th scope="row"></th>
-                                            <th scope="row"></th>
-                                            <th scope="row"></th>
-                                            <th scope="row"></th>
+                                            <?php foreach ($pagos as $pa): ?> 
+                                            <tr style="cursor: pointer;" onclick="console.log('efra')" id="fila<?php echo $pa->getidPago(); ?>">
+                                            <th scope="row"><?php echo $pa->getidPago(); ?></th>
+                                            <th scope="row"><?php echo $pa->getvalorPago(); ?></th>
+                                            <th scope="row"><?php echo $pa->getfechaPago(); ?></th>
+                                            <th scope="row"><?php echo $pa->getidPrestamos(); ?></th>
+                                            <th scope="row"><?php echo $pa->getClientes_idUsuarios(); ?></th>
                                             <th scope="row">
                                                 <button class="btn btn-info">
                                                     <i class="far fa-edit"></i>
                                                 </button>
                                             </th>
                                         </tr>
+                                        <?php endforeach ?>
                                     </tbody>
                                 </table>
                             </div>

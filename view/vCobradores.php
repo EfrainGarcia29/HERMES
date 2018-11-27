@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php 
-require_once('../dao/clientesDAO.php');
-$objusuariosDao = new clientesDAO(); 
-$usuarios = $objusuariosDao->allUsuarios();
+require_once('../dao/cobradoresDAO.php');
+$objusuariosDao = new CobradoresDAO(); 
+$usuarios = $objusuariosDao->allCobradores();
 ?>
 <html lang="en">
 
@@ -32,30 +32,30 @@ $usuarios = $objusuariosDao->allUsuarios();
       <div class="sidebar-wrapper">
         <div class="logo">
           <a href="http://www.creative-tim.com" class="simple-text">
-           Cliente 
+           Rutas 
          </a>
        </div>
        <ul class="nav">
-       <li class="nav-item active">
-        <a class="nav-link" href="./PrestamosC.php">
-          <i class="fas fa-users"></i>
-          <p>Prestamos</p>
+      <li>
+        <a class="nav-link" href="./pagos.php">
+          <i class="fas fa-hand-holding-usd"></i>
+          <p>Pagos</p>
         </a>
       </li>
       <li>
-        <a class="nav-link" href="./CreditosC.php">
-          <i class="fas fa-hand-holding-usd"></i>
-          <p>Creditos</p>
+        <a class="nav-link" href="./localidad.php">
+          <i class="fas fa-globe-africa"></i>
+          <p>Rutas</p>
         </a>
-      </li>
+      </li>            
     </ul>
   </div>
 </div>
 <div class="main-panel">
-  <!-- Navbar -->
+  <!--------------------------------------------------------- Parte Superior ----------------------------------------------------------------------------------->
   <nav class="navbar navbar-expand-lg " color-on-scroll="500">
     <div class=" container-fluid  ">
-      <a class="navbar-brand" href="#pablo">clientes</a>
+      <a class="navbar-brand" href="#pablo">Cobradores</a>
       <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-bar burger-lines"></span>
         <span class="navbar-toggler-bar burger-lines"></span>
@@ -96,7 +96,7 @@ $usuarios = $objusuariosDao->allUsuarios();
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#pablo">
+            <a class="nav-link" href="index.php">
               <span class="no-icon">Cerrar Sesion</span>
             </a>
           </li>
@@ -104,7 +104,9 @@ $usuarios = $objusuariosDao->allUsuarios();
       </div>
     </div>
   </nav>
-  <!-- End Navbar -->
+ <!--------------------------------------------------------- Parte Superior fin ----------------------------------------------------------------------------------->
+ 
+  <!--------------------------------------------------------- Informacion respecto a los "clientes"------------------------------------------------------------------>
   <div class="content">
     <div class="container-fluid">
       <div class="row">
@@ -113,112 +115,10 @@ $usuarios = $objusuariosDao->allUsuarios();
 
 
             <div class="card-header ">
-              <h4 class="card-title">Clientes</h4>
+              <h4 class="card-title">Cobradores</h4>
             </div>
-            <div class="card-header ">
-              <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
-            </div>
-            <br><br>
+           
 
-            <!------------------------------------------------------------Modal--------------------------------------------------------------------------------------->
-
-            <div class="modal fade" id="modalCrearUsuario" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <strong class="modal-title" id="modalCrearUsuarioLabel">Nuevo Cliente<??></strong>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <form>
-                    <div class="modal-body" >
-                      <div class="row">
-
-                        <div class="form-group col-md-12">
-                          <label for="nombre">Nombres:</label>
-                          <input class="form-control form-control-sm" type="text" placeholder="Nombres" id="nombre" REQUIRED name="nombre">
-                        </div>
-                        <div class="form-group col-md-12">
-                         <label for="fN">Apellidos:</label>
-                         <input class="form-control form-control-sm" type="text" placeholder="Apellidos" id="apellido" REQUIRED name="apellido">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="usuario">Usuario:</label>
-                         <input class="form-control form-control-sm" placeholder="Usuario" type="text" id="usuario" REQUIRED name="usuario">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="contra">Password:</label>
-                         <input class="form-control form-control-sm" placeholder="Contraseña" type="password" id="password" REQUIRED name="password">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="email">Correo Electrónico:</label>
-                         <input class="form-control form-control-sm" placeholder="Correo" type="email" id="email" REQUIRED name="email">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="Nombre">Img:</label>
-                         <input class="form-control form-control-sm" type="file" placeholder="img" id="img">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="usuario">Direccion:</label>
-                         <input class="form-control form-control-sm" placeholder="Direccion" type="direccion" id="direccion" REQUIRED name="direccion">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="Nombre">Telefono:</label>
-                         <input class="form-control form-control-sm" type="number" placeholder="telefono" id="telefono" REQUIRED name="telefono">
-                       </div>
-                       
-                       <div class="form-group col-md-12">
-                         <label for="Nombre">Cedula:</label>
-                         <input class="form-control form-control-sm" type="number" placeholder="cedula" id="cedula" REQUIRED name="cedula">
-                       </div>
-
-                       <select class="form-control" id="idLocalidad" name="localidad">
-                         <option  name="estado" value="1">San Diego</option>
-                         <option  name="estado" value="2">El Reposo</option>
-                         <option  name="estado" value="3">Santa Rosa</option>
-                       </select>
-                       
-                     </div>
-                   </div>
-                   <div class="modal-footer">
-                     <button type="button" onclick="crearCliente()" class="btn btn-primary">Enviar</button>
-                   </div>
-                 </form>
-               </div>
-             </div>
-           </div>
-           <div class="row">
-             <div class="col-md-2"></div>
-             <div class="col-md-2"></div>
-           </div>
-           <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Añadir Departamento</h4>
-                </div>
-                <div class="modal-body">
-                 <form class="well" method="post" id="dpto">
-                   <input type="text" class="form-control" name="nombre" id="nombre1" placeholder="Nombre de departamento" required/>
-                   <br>
-                   <button type="submit" class="btn btn-block btn-success">Guardar <i class="glyphicon glyphicon-ok"></i></button>
-                 </form>
-               </div>
-               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              </div>
-            </div>
-
-          </div>
-        </div>
         <div class="card-body table-full-width table-responsive">
           <table class="table responsive boarde">
             <thead class="bg-info">
@@ -267,8 +167,12 @@ $usuarios = $objusuariosDao->allUsuarios();
     </div>
   </div>
 </div>
+
+  <!---------------------------------------------------------Fin Informacion respecto a los "clientes"------------------------------------------------------------------>
+
+  <!--------------------------------------------------------- Parte Inferior------------------------------------------------------------------>
 <footer class="footer">
-  <div class="container">
+  <div class="container col-md-12">
     <nav>
       <ul class="footer-menu">
         <li>
@@ -292,19 +196,13 @@ $usuarios = $objusuariosDao->allUsuarios();
           </a>
         </li>
       </ul>
-      <p class="copyright text-center">
-        ©
-        <script>
-          document.write(new Date().getFullYear())
-        </script>
-        <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-      </p>
-    </nav>
   </div>
 </footer>
 </div>
 </div>
 </body>
+
+  <!--------------------------------------------------------- Fin parte inferior------------------------------------------------------------------>
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>

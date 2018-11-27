@@ -133,13 +133,12 @@ $usuarios = $objusuariosDao->allUsuarios();
             <div class="card-header ">
               <h4 class="card-title">Clientes</h4>
             </div>
-            <div class="card-header ">
-              <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
-            </div>
-            <br><br>
+           
 
             <!------------------------------------------------------------Modal--------------------------------------------------------------------------------------->
-
+           <div class="card-header ">
+              <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
+            </div>
             <div class="modal fade" id="modalCrearUsuario" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
@@ -197,11 +196,7 @@ $usuarios = $objusuariosDao->allUsuarios();
                          <input class="form-control form-control-sm" type="number" placeholder="cedula" id="cedula" REQUIRED name="cedula">
                        </div>
 
-                       <select class="form-control" id="idLocalidad" name="localidad">
-                         <option  name="estado" value="1">San Diego</option>
-                         <option  name="estado" value="2">El Reposo</option>
-                         <option  name="estado" value="3">Santa Rosa</option>
-                       </select>
+                       
                        
                      </div>
                    </div>
@@ -212,31 +207,9 @@ $usuarios = $objusuariosDao->allUsuarios();
                </div>
              </div>
            </div>
-           <div class="row">
-             <div class="col-md-2"></div>
-             <div class="col-md-2"></div>
-           </div>
-           <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal">&times;</button>
-                  <h4 class="modal-title">Añadir Departamento</h4>
-                </div>
-                <div class="modal-body">
-                 <form class="well" method="post" id="dpto">
-                   <input type="text" class="form-control" name="nombre" id="nombre1" placeholder="Nombre de departamento" required/>
-                   <br>
-                   <button type="submit" class="btn btn-block btn-success">Guardar <i class="glyphicon glyphicon-ok"></i></button>
-                 </form>
-               </div>
-               <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-              </div>
-            </div>
+           
+<!---------------------------------------------------------------FIN MODAL--------------------------------------------------------------------------------->           
 
-          </div>
-        </div>
         <div class="card-body table-full-width table-responsive">
           <table class="table responsive boarde">
             <thead class="bg-info">
@@ -286,7 +259,7 @@ $usuarios = $objusuariosDao->allUsuarios();
   </div>
 </div>
 <footer class="footer">
-  <div class="container">
+  <div class="container col-md-12">
     <nav>
       <ul class="footer-menu">
         <li>
@@ -310,14 +283,6 @@ $usuarios = $objusuariosDao->allUsuarios();
           </a>
         </li>
       </ul>
-      <p class="copyright text-center">
-        ©
-        <script>
-          document.write(new Date().getFullYear())
-        </script>
-        <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-      </p>
-    </nav>
   </div>
 </footer>
 </div>

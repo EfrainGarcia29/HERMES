@@ -4,16 +4,15 @@ class Localidad
 	{
 		private $idLocalidad;
 		private $nombre;
-		private $idUsuarios;
 
-		public function __construct($idLocalidad, $nombre, $idUsuarios){
+		public function __construct($idLocalidad, $nombre){
 
 			$this->idLocalidad = $idLocalidad;
 			$this->nombre = $nombre;
-			$this->idUsuarios = $idUsuarios;
 			
 			
 		}
+		
 		public function getidLocalidad() {
 			return $this->idLocalidad;
 		}
@@ -29,15 +28,6 @@ class Localidad
 
 		public function setnombre($nombre) {
 			$this->nombre = $nombre;
-		}
-		
-		
-		public function getidUsuarios() {
-			return $this->idUsuarios;
-		}
-
-		public function setidUsuarios($idUsuarios) {
-			$this->idUsuarios = $idUsuarios;
 		}
 		
 	}

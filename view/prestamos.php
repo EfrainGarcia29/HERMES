@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php 
 
+require_once('../dao/prestamosDAO.php');
+$objprestamoDao = new prestamosDAO(); 
+$prestamos = $objprestamoDao->allprestamos();
+?>
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../assets/css/stylo.css">
@@ -110,7 +115,7 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#pablo">
+                        <a class="nav-link" href="index.php">
                             <span class="no-icon">Cerrar Sesion</span>
                         </a>
                     </li>
@@ -137,32 +142,36 @@
                             <thead class="bg-info">
                                 <tr style="color: #FFFFFF">
                                     <th scope="col">#</th>
-                                    <th scope="col">Cliente</th>
+                                    <th scope="col">Prestamos</th>
                                     <th scope="col">VaLor Por Pagar</th>
                                     <th scope="col">Tasa de Interes</th>
                                     <th scope="col">Cuotas</th>
                                     <th scope="col">Fecha de Inicio</th>
                                     <th scope="col">Fecha Final</th>
+                                    <th scope="col">Usuario</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">Editar</th>
                                     
                                 </tr>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row"></th>
-                                        <th scope="row"></th>
-                                        <th scope="row"></th>
-                                        <th scope="row"></th>
-                                        <th scope="row"></th>
-                                        <th scope="row"></th>
-                                        <th scope="row"></th>
-                                        <th scope="row"></th>
+                                    <?php foreach ($prestamos as $pre): ?> 
+                                        <tr style="cursor: pointer;" onclick="console.log('efra')" id="fila<?php echo $pre->getidPrestamos(); ?>">
+                                        <th scope="row"><?php echo $pre->getidPrestamos(); ?></th>
+                                        <th scope="row"><?php echo $pre->getprestamo(); ?></th>
+                                        <th scope="row"><?php echo $pre->getvalorPorPagar(); ?></th>
+                                        <th scope="row"><?php echo $pre->gettasaInteres(); ?></th>
+                                        <th scope="row"><?php echo $pre->getcuota(); ?></th>
+                                        <th scope="row"><?php echo $pre->getfechaInicio(); ?></th>
+                                        <th scope="row"><?php echo $pre->getfechaFinal(); ?></th>
+                                        <th scope="row"><?php echo $pre->getidUsuarios(); ?></th>
+                                        <th scope="row"><?php echo $pre->getidEstadosPrestamos(); ?></th>
                                         <th scope="row">
                                             <button class="btn btn-info">
                                                 <i class="far fa-edit"></i>
                                             </button>
                                         </th>
                                     </tr>
+                                    <?php endforeach ?>
                                 </tbody>
                             </table>
                         </div>

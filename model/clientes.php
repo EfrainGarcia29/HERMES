@@ -7,8 +7,9 @@ class Clientes extends Usuarios
 		private $idUsuarios;
 		private $direccion;
 		private $cedula;
-		
 
+		
+		
 		public function __construct($idUsuarios, $nombres, $apellidos, $cedula, $direccion, $email, $usuario, $password){
 
 			$this->idUsuarios = $idUsuarios;

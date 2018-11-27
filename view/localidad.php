@@ -114,7 +114,7 @@ $localidad = $objlocalidadDao->alllocalidad();
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#pablo">
+                        <a class="nav-link" href="index.php">
                             <span class="no-icon">Cerrar Sesion</span>
                         </a>
                     </li>
@@ -134,7 +134,7 @@ $localidad = $objlocalidadDao->alllocalidad();
                             <h4 class="card-title">Localidades</h4>
                         </div>
                         <div class="card-header ">
-                            <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario" onclick="crear()"> <i class="fas fa-plus"></i></button>
                         </div>
                         
 <!-------------------------------------------Nueva localidad--------------------------------------------------------------------------------------------------------->
@@ -144,7 +144,7 @@ $localidad = $objlocalidadDao->alllocalidad();
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                       <div class="modal-header">
-                                        <strong class="modal-title" id="modalCrearUsuarioLabel">Nueva ruta</strong>
+                                        <strong class="modal-title" id="modalCrearUsuarioLabel">Crear Localidad</strong>
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                           <span aria-hidden="true">&times;</span>
                                         </button>
@@ -153,25 +153,18 @@ $localidad = $objlocalidadDao->alllocalidad();
                                           <div class="modal-body" >
                                              <section>
                                                   <div class="form-group col-md-12">
-                                                     <label for="Nombre">Nombre cobrador:</label>
-                                                     <input class="form-control form-control-sm" type="text" placeholder="Nombre" id="Nombre" REQUIRED name="nombre">
+                                                     <label for="Nombre">Nombre de la localidad:</label>
+                                                     <input class="form-control" type="text" id="nombrelocalidad"/>
                                                   </div>
-                                              </section>
+                                             </section>
                                               <section>
                                                   <div class="form-group col-md-12">
-                                                       <label for="telefono">Rutas:</label>
-                                                        <div class="btn-group">
-                                                        <label class="radio-inline"></label>
-                                                             <select class="form-control" id="tipo" name="tipoUser">
-                                                                 <option  type="radio" name="estado" value="A">Seleccine una ruta</option>
-                                                                 <option  type="radio" name="estado" value="I">#</option>
-                                                                 <option  type="radio" name="estado" value="V">#</option>
-                                                            </select>
+
                                               </section>
                                           </div>
                                           <section>
-                                              <div class="modal-footer">
-                                                 <button type="button" class="btn btn-primary">Guardar</button>
+                                            <div class="modal-footer" id="buttonsave">
+                                            <button type="button" class="btn btn-primary" id="editarbtn" onclick="editarLocalidad(1)">Guardar</button>
                                               </div>
                                           </section>
                                       </form>
@@ -187,25 +180,23 @@ $localidad = $objlocalidadDao->alllocalidad();
                                     <tr style="color: #FFFFFF">
                                         <th scope="col">#</th>
                                         <th scope="col">Localidad</th>
-                                        <th scope="col">Usuario</th>
                                         <th scope="col">Editar</th>
                                         <th scope="col">Eliminar</th>
                                     </tr>
-                                    <tbody>
-                                        <tr>
-                                            <?php foreach ($localidad as $local): ?> 
-                                            <tr style="cursor: pointer;" onclick="console.log('efra')" id="fila<?php echo $local->getidLocalidad(); ?>">
+                                    <tbody id="tablaLocalidad">
+                                        <?php foreach ($localidad as $local): ?> 
+                                        <tr style="cursor: pointer;" id="fila<?php echo $local->getidLocalidad(); ?>">
                                             <th scope="row"><?php echo $local->getidLocalidad(); ?></th>
-                                            <th scope="row"><?php echo $local->getnombre(); ?></th>
-                                            <th scope="row"><?php echo $local->getidUsuarios(); ?></th> 
+                                            <th id="nom<?php echo $local->getidLocalidad(); ?>" scope="row"><?php echo $local->getnombre(); ?></th>
                                             <th scope="row">
-                                                <button class="btn btn-info">
-                                                    <i class="far fa-edit"></i>
+                                                <button class="btn btn-info" onclick="getlocalidad(<?php echo $local->getidLocalidad(); ?>)">
+                                                    <i class="far fa-edit" data-toggle="modal" data-target="#modalCrearUsuario"></i>
                                                 </button>
                                                 <th scope="row">
-                                                <button type="button" class="btn btn-danger">
+                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalEliminar" id="btnEliminar<?php echo $local->getidLocalidad(); ?>"  onclick="deletelocalidad(<?php echo $local->getidLocalidad(); ?>)">
                                                      <i class="far fa-trash-alt"></i>
-                                                </button>
+                                                </button
+                                                
                                             </th>                                             
                                             </th>
                                         </tr>
@@ -255,16 +246,33 @@ $localidad = $objlocalidadDao->alllocalidad();
         </footer>
     </div>
 </div>
+<!--   Modal DELECTE   -->
+<div class="modal fade" id="modalEliminar" tabindex="-1" role="dialog" aria-labelledby="modalEliminar" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+	<h5 class="modal-title"><i class="fas fa-user-times"></i> Eliminar Usuario </h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+    </div>
+    <div class="modal-body">
+		<p id="mensajeModal"></p>
+		<input type="hidden" name="idUsuario" id="idUsuario">
+	</div>
+
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+		<button type="button" class="btn btn-primary" onclick="eliminar();">Eliminar</button>
+</div>
 </body>
 <!--   Core JS Files   -->
-<script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
+<!-- jQuery -->
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="../assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-<!--  Chartist Plugin  -->
 <script src="../assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
 <script src="../assets/js/plugins/bootstrap-notify.js"></script>
@@ -272,5 +280,8 @@ $localidad = $objlocalidadDao->alllocalidad();
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
-
+<!-- AJAX! -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--   llamar localidades   -->
+<script src="../assets/js/localidad.js"></script>
 </html>

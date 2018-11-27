@@ -1,7 +1,6 @@
-<!DOCTYPE html>
 <html lang="en">
 <?php 
-
+include('../dao/localidadDAO.php');
 require_once('../dao/cobradoresDAO.php');
 $objusuariosDao = new cobradoresDAO(); 
 $usuarios = $objusuariosDao->allCobradores();
@@ -129,12 +128,11 @@ $usuarios = $objusuariosDao->allCobradores();
                         <div class="card-header ">
                             <h4 class="card-title">Cobradores</h4>
                         </div>
-                        <div class="card-header ">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
-                        </div>
+                        
 <!-------------------------------------  Nuevo cobrador  ------------------------------------------------------------------------------------------------------------------------------->
-
-
+                        <div class="card-header ">
+                        <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario" onclick="crearC()"> <i class="fas fa-plus"></i></button>
+                        </div>
                          <div class="modal" id="modalCrearUsuario" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -144,87 +142,142 @@ $usuarios = $objusuariosDao->allCobradores();
                                           <span aria-hidden="true">&times;</span>
                                         </button>
                                       </div>
-                                      <form method="post" action="../../control/accion/act_insertarUsuario.php">
                                           <div class="modal-body" >
                                              <section>
                                                   <div class="form-group col-md-12">
-                                                      <label for="nombre">Nombres:</label>
-                                                      <input class="form-control form-control-sm" type="text" placeholder="Nombre" id="nombre" REQUIRED name="nombres">
-                                                  </div>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="fN">Apellidos:</label>
-                                                     <input class="form-control form-control-sm" type="text" placeholder="Apellidos" id="ape" REQUIRED name="fNacimiento">
-                                                  </div>
-                                              </section>
-                                              <section>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="Nombre">Cedula de ciudadania:</label>
-                                                     <input class="form-control form-control-sm" type="text" placeholder="Nombre" id="Nombre" REQUIRED name="nombre">
-                                                  </div>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="Celular">Celular:</label>
-                                                     <input class="form-control form-control-sm" type="text" placeholder="Celular" id="Celular" REQUIRED name="apellido">
-                                                  </div>
-                                              </section>
-                                          
-                                                  <div class="form-group col-md-12">
-                                                     <label for="usuario">E-mail:</label>
-                                                     <input class="form-control form-control-sm" placeholder="Usuario" type="text" id="usuario" REQUIRED name="usuario">
-                                                  </div>
-                    
-                                                  <div class="form-group col-md-12">
-                                                     <label for="contra">Contraseña:</label>
-                                                     <input class="form-control form-control-sm" placeholder="Contraseña" type="password" id="contra" REQUIRED name="password">
-                                                  </div>
-                                              
-                                              <section>
-                                
-                                                  <div class="form-group col-md-12">
-                                                     <label for="telefono">Estado:</label>
-                                                    <div>
-                                                        <label class="radio-inline"></label>
-                                                             <select class="form-control" id="tipo" name="tipoUser">
-                                                                 <option  type="radio" name="estado" value="A">Activo</option>
-                                                                 <option  type="radio" name="estado" value="I">Inactivo</option>
-                                                                 <option  type="radio" name="estado" value="V">Vacaciones</option>
-                                                            </select>
-                                                    </div>
-                                                  </div>
-                                              </section>
-                                              <section>
-                                                  <div class="form-group col-md-12">
-                                                    <label>Género:</label>
-                                                    <div>
-                                                        <label class="radio-inline">
-                                                            <select class="form-control" id="tipo" name="tipoUser">
-                                                                <option  type="radio" name="genero" value="M">Masculino</option>
-                                                                <option  type="radio" name="genero" value="F">Femenino</option>
-                                                            </select>
-                                                    </div>
-                                                  </div>
-                                                  <div class="form-group ">
-                                                     <label>Tipo:</label>
-                                                      <select class="form-control" id="tipo" name="tipoUser">
-                                                          <option value="3">Cobrador</option>
-                                                      </select>
-                                                  </div>
-                                              </section>
-                                          </div>
-                                          <div class="modal-footer">
-                                             <input type="submit" class="btn btn-primary">
-                                          </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
+                          <label for="nombre">Nombres:</label>
+                          <input class="form-control form-control-sm" type="text" placeholder="Nombres" id="nombre" REQUIRED name="nombre">
+                        </div>
+                        <div class="form-group col-md-12">
+                         <label for="fN">Apellidos:</label>
+                         <input class="form-control form-control-sm" type="text" placeholder="Apellidos" id="apellido" REQUIRED name="apellido">
+                       </div>
+
+                       <div class="form-group col-md-12">
+                         <label for="usuario">Usuario:</label>
+                         <input class="form-control form-control-sm" placeholder="Usuario" type="text" id="usuario" REQUIRED name="usuario">
+                       </div>
+
+                       <div class="form-group col-md-12">
+                         <label for="contra">Password:</label>
+                         <input class="form-control form-control-sm" placeholder="Contraseña" type="password" id="password" REQUIRED name="password">
+                       </div>
+
+                       <div class="form-group col-md-12">
+                         <label for="email">Correo Electrónico:</label>
+                         <input class="form-control form-control-sm" placeholder="Correo" type="email" id="email" REQUIRED name="email">
+                       </div>
+
+                       <div class="form-group col-md-12">
+                         <label for="Nombre">Img:</label>
+                         <input class="form-control form-control-sm" type="file" placeholder="img" id="img">
+                       </div>
+                        <div class="form-group col-md-12">
+                         <label for="Nombre">Cedula:</label>
+                         <input class="form-control form-control-sm" type="number" placeholder="cedula" id="cedula" REQUIRED name="cedula">
+                       </div>
+                       <div class="form-group col-md-12">
+                         <label for="Nombre">Telefono:</label>
+                         <input class="form-control form-control-sm" type="number" placeholder="telefono" id="telefono" REQUIRED name="telefono">
+                       </div>
+                       <div class="form-group col-md-12">
+                            <label>Localidades</label>
+                            <select class="form-control" id="selectLocalidad" name="tipoUser">
+                                <option value="0">Seleccione una localidad</option>
+                            </select>                          
+                        </div>
+                       <div class="form-group col-md-12">
+                            <label>Estado</label>
+                            <select class="form-control" id="selectEstados" name="tipoUser">
+                                <option value="0">Seleccione estado</option>
+                            </select>                          
+                        </div>
+                        </div>
+                        <div class="modal-footer" id="buttonsave">
+                             
+                        </div>
+                        </div>
+                        </div>
+                        </div>
                         
 <!-----------------------------------------Fin cobrador  ------------------------------------------------------------------------------------------------------------------------------->
+                        <!-------------------------------------  Editar cobrador  ------------------------------------------------------------------------------------------------------------------------------->
+                       
+                         <div class="modal" id="modalEditarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalEditarUsuarioLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <strong class="modal-title" id="modalEditarUsuarioLabel">Editar Cobrador</strong>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </div>
+                                          <div class="modal-body" >
+                                             <section>
+                                                  <div class="form-group col-md-12">
+                          <label for="nombre">Nombres:</label>
+                          <input class="form-control form-control-sm" type="text" placeholder="Nombres" id="nombres" REQUIRED name="nombre">
+                        </div>
+                        <div class="form-group col-md-12">
+                         <label for="fN">Apellidos:</label>
+                         <input class="form-control form-control-sm" type="text" placeholder="Apellidos" id="apellidos" REQUIRED name="apellido">
+                       </div>
+
+                       <div class="form-group col-md-12">
+                         <label for="usuario">Usuario:</label>
+                         <input class="form-control form-control-sm" placeholder="Usuario1" type="text" id="usuario1" REQUIRED name="usuario">
+                       </div>
+
+                       <div class="form-group col-md-12">
+                         <label for="contra">Password:</label>
+                         <input class="form-control form-control-sm" placeholder="Contraseña" type="password1" id="password" REQUIRED name="password">
+                       </div>
+
+                       <div class="form-group col-md-12">
+                         <label for="email">Correo Electrónico:</label>
+                         <input class="form-control form-control-sm" placeholder="Correo" type="email" id="email1" REQUIRED name="email">
+                       </div>
+
+                       <div class="form-group col-md-12">
+                         <label for="Nombre">Img:</label>
+                         <input class="form-control form-control-sm" type="file" placeholder="img" id="img1">
+                       </div>
+                        <div class="form-group col-md-12">
+                         <label for="Nombre">Cedula:</label>
+                         <input class="form-control form-control-sm" type="number" placeholder="cedula" id="cedula1" REQUIRED name="cedula">
+                       </div>
+                       <div class="form-group col-md-12">
+                         <label for="Nombre">Telefono:</label>
+                         <input class="form-control form-control-sm" type="number" placeholder="telefono" id="telefono1" REQUIRED name="telefono">
+                       </div>
+                       <div class="form-group col-md-12">
+                            <label>Localidades</label>
+                            <select class="form-control" id="selectLocalidad" name="tipoUser">
+                                <option value="0">Seleccione una localidad</option>
+                            </select>                          
+                        </div>
+                       <div class="form-group col-md-12">
+                            <label>Estado</label>
+                            <select class="form-control" id="selectEstados" name="tipoUser">
+                                <option value="0">Seleccione estado</option>
+                            </select>                          
+                        </div>
+                        </div>
+                        <div class="modal-footer">
+                             <button type="button" onclick="editarCobradores(1)" class="btn btn-primary">Guardar</button>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                        
+<!-----------------------------------------fin Editar cobrador  ------------------------------------------------------------------------------------------------------------------------------->
+                        
                         
                         
                         <div class="card-body table-full-width table-responsive">
-                            <table class="table table-responsive table-boarde table-hover">
+                            <table class="table responsive boarde">
                             <thead class="table-info">
-                                <tr style="color: #FFFFFF">
+                                 <tr style="color: #FFFFFF">
                                     <th scope="col">#</th>
                                     <th scope="col">Nombres</th>
                                     <th scope="col">Apellidos</th>
@@ -252,12 +305,12 @@ $usuarios = $objusuariosDao->allCobradores();
                                 <th scope="row"><?php echo $usuario->getestado(); ?></th>
                                 <th scope="row"><?php echo $usuario->getnombre(); ?></th>
                                 <th scope="row">
-                                            <button class="btn btn-info">
-                                                <i class="far fa-edit"></i>
-                                            </button>
+                                            <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearUsuario" onclick="getCobrador(<?php echo $usuario->getidUsuarios(); ?>)">
+                                                    <i class="far fa-edit"></i>
+                                                </button>
                                         </th>
                                         <th scope="row">
-                                            <button type="button" class="btn btn-danger">
+                                            <button type="button" class="btn btn-danger" id="btnEliminar<?php  echo $usuario->getidUsuarios(); ?>"  onclick="deleteCobrador(<?php  echo $usuario->getidUsuarios();  ?>)">
                                                 <i class="far fa-trash-alt"></i>
                                             </button>
                                         </th>
@@ -315,8 +368,6 @@ $usuarios = $objusuariosDao->allCobradores();
 <script src="../assets/js/core/bootstrap.min.js" type="text/javascript"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
 <script src="../assets/js/plugins/bootstrap-switch.js"></script>
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 <!--  Chartist Plugin  -->
 <script src="../assets/js/plugins/chartist.min.js"></script>
 <!--  Notifications Plugin    -->
@@ -325,5 +376,15 @@ $usuarios = $objusuariosDao->allCobradores();
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
+<!-- AJAX! -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!--   llamar localidades   -->
+<!-- Clientes JS! -->
+<script src="../assets/js/cobradores.js"></script>
+<script src="../assets/js/localidad.js"></script>
+<script>
+    getLocalidades();
+    getEstados();
+</script>
 
 </html>

@@ -29,7 +29,6 @@ class ClientesDAO
 			$usuarios[]=$u;
 		}
 		return $usuarios;
-			print_r($localidad);
 	}
 	
 

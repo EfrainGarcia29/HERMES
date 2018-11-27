@@ -23,9 +23,62 @@ class Prestamos
 			$this->fechaInicio = $fechaInicio;
 			$this->fechaFinal = $fechaFinal;
 			$this->idUsuarios = $idUsuarios;
-			$this->estado = $idEstadosPrestamos;
+			$this->idEstadosPrestamos = $idEstadosPrestamos;
 		}
 
+		public function getidPrestamos() {
+			return $this->idPrestamos;
+		}
+
+		public function setidPrestamos($idPrestamos) {
+			$this->idPrestamos = $idPrestamos;
+		}
+
+		public function getprestamo() {
+			return $this->prestamo;
+		}
+
+		public function setprestamo($prestamo) {
+			$this->prestamo = $prestamo;
+		}
+
+		public function getvalorPorPagar() {
+			return $this->valorPorPagar;
+		}
+
+		public function setvalorPorPagar($valorPorPagar) {
+			$this->valorPorPagar = $valorPorPagar;
+		}
+				
+		public function gettasaInteres() {
+			return $this->tasaInteres;
+		}
+
+		public function settasaInteres($tasaInteres) {
+			$this->tasaInteres = $tasaInteres;
+		}
+		
+		public function getcuota() {
+			return $this->cuota;
+		}
+
+		public function setcuota($cuota) {
+			$this->cuota = $cuota;
+		}
+		public function getfechaInicio() {
+			return $this->fechaInicio;
+		}
+
+		public function setfechaInicio($fechaInicio) {
+			$this->fechaInicio = $fechaInicio;
+		}
+		public function getfechaFinal() {
+			return $this->fechaFinal;
+		}
+
+		public function setfechaFinal($fechaFinal) {
+			$this->fechaFinal = $fechaFinal;
+		}
 		public function getidUsuarios() {
 			return $this->idUsuarios;
 		}
@@ -33,37 +86,12 @@ class Prestamos
 		public function setidUsuarios($idUsuarios) {
 			$this->idUsuarios = $idUsuarios;
 		}
-
-		public function getcedula() {
-			return $this->cedula;
+		public function getidEstadosPrestamos() {
+			return $this->idEstadosPrestamos;
 		}
 
-		public function setcedula($cedula) {
-			$this->cedula = $cedula;
-		}
-
-		public function gettelefono() {
-			return $this->telefono;
-		}
-
-		public function settelefono($telefono) {
-			$this->telefono = $telefono;
-		}
-				
-		public function getestado() {
-			return $this->estado;
-		}
-
-		public function setestado($estado) {
-			$this->estado = $estado;
-		}
-		
-		public function getnombre() {
-			return $this->nombre;
-		}
-
-		public function setnombre($nombre) {
-			$this->nombre = $nombre;
+		public function setidEstadosPrestamos($idEstadosPrestamos) {
+			$this->idEstadosPrestamos = $idEstadosPrestamos;
 		}
 	}
  ?>

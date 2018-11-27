@@ -96,7 +96,7 @@ $usuarios = $objusuariosDao->allUsuarios();
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#pablo">
+            <a class="nav-link" href="index.php">
               <span class="no-icon">Cerrar Sesion</span>
             </a>
           </li>

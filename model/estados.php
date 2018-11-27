@@ -18,7 +18,7 @@ class Estados
 			return $this->idUsuarios;
 		}
 
-		public function setidEstados($idEstadoss) {
+		public function setidEstados($idEstados) {
 			$this->idEstados = $idEstados;
 		}
 
@@ -26,8 +26,8 @@ class Estados
 			return $this->estado;
 		}
 				
-		public function setestado($nombre) {
-			$this->nombre = $nombre;
+		public function setestado($estado) {
+			$this->estado = $estado;
 		}
 
 
