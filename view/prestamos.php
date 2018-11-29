@@ -5,6 +5,9 @@
 require_once('../dao/prestamosDAO.php');
 $objprestamoDao = new prestamosDAO(); 
 $prestamos = $objprestamoDao->allprestamos();
+error_reporting(E_ALL ^ E_DEPRECATED);
+    ob_start();
+    session_start();
 ?>
 <head>
     <meta charset="utf-8" />
@@ -98,7 +101,7 @@ $prestamos = $objprestamoDao->allprestamos();
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#pablo">
-                            <span class="no-icon">Perfil</span>
+                            <span class="no-icon"><?php echo $_SESSION["usuario"]["nombres"].' '.$_SESSION["usuario"]["apellidos"] ?></span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -135,7 +138,7 @@ $prestamos = $objprestamoDao->allprestamos();
                             <h4 class="card-title">Prestamos</h4>
                         </div>
                         <div class="card-header ">
-                            <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearPrestamo"> <i class="fas fa-plus"></i></button>
                         </div>
                         <div class="card-body table-full-width table-responsive">
                            <table class="table responsive boarde">
@@ -150,7 +153,7 @@ $prestamos = $objprestamoDao->allprestamos();
                                     <th scope="col">Fecha Final</th>
                                     <th scope="col">Usuario</th>
                                     <th scope="col">Estado</th>
-                                    <th scope="col">Editar</th>
+                                    <!--<th scope="col">Editar</th>-->
                                     
                                 </tr>
                                 <tbody>
@@ -165,11 +168,11 @@ $prestamos = $objprestamoDao->allprestamos();
                                         <th scope="row"><?php echo $pre->getfechaFinal(); ?></th>
                                         <th scope="row"><?php echo $pre->getidUsuarios(); ?></th>
                                         <th scope="row"><?php echo $pre->getidEstadosPrestamos(); ?></th>
-                                        <th scope="row">
-                                            <button class="btn btn-info">
-                                                <i class="far fa-edit"></i>
-                                            </button>
-                                        </th>
+                                        <!--<th scope="row">-->
+                                        <!--    <button class="btn btn-info">-->
+                                        <!--        <i class="far fa-edit"></i>-->
+                                        <!--    </button>-->
+                                        <!--</th>-->
                                     </tr>
                                     <?php endforeach ?>
                                 </tbody>
@@ -217,6 +220,58 @@ $prestamos = $objprestamoDao->allprestamos();
     </footer>
 </div>
 </div>
+
+<!-------------------------------------------Nuevo Prestamo--------------------------------------------------------------------------------------------------------->
+<div class="modal" id="modalCrearPrestamo" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <strong class="modal-title" id="modalCrearUsuarioLabel">Crear Prestamo</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form method="post" action="../../control/accion/act_insertarUsuario.php">
+                  <div class="modal-body" >
+                     <section>
+                          <div class="form-group col-md-12">
+                             <label for="valorPrestamo">Valor Prestamo:</label>
+                             <input class="form-control" min="1" type="number" id="valorPrestamo"/>
+                          </div>
+                     </section>
+                     <section>
+                          <div class="form-group col-md-12">
+                             <label for="tasasInteres">Interes:</label>
+                             <input class="form-control" max-length="2" type="number" id="tasasInteres"/>
+                          </div>
+                     </section>
+                     <section>
+                          <div class="form-group col-md-12">
+                             <label for="cuotas">Cuotas:</label>
+                             <input class="form-control" max-length="2" type="number" id="cuotas"/>
+                          </div>
+                     </section>
+                     <section>
+                         <div class="form-group col-md-12">
+                            <label>Usuario</label>
+                            <select class="form-control" id="selectUsuario">
+                                <option value="0">Seleccione un cliente</option>
+                            </select>
+                         </div>
+                      </section>
+                  </div>
+                  <section>
+                    <div class="modal-footer" id="buttonsave">
+                        <button type="button" class="btn btn-primary" id="crearbtn" onclick="crearPrestamo()">Guardar</button>
+                    </div>
+                  </section>
+              </form>
+            </div>
+          </div>
+        </div>
+<!---------------------------------------  Fin prestamo-------------------------------------------------------------------------------------------------------------->
+                        
+
 </body>
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
@@ -234,5 +289,9 @@ $prestamos = $objprestamoDao->allprestamos();
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
-
+<!--   llamar prestamos   -->
+<script src="../assets/js/prestamos.js"></script>
+<script type="text/javascript">
+    getClientes();
+</script>
 </html>

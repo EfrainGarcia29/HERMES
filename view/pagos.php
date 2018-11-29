@@ -5,6 +5,9 @@
 require_once('../dao/pagosDAO.php');
 $objpagosDao = new pagosDAO(); 
 $pagos = $objpagosDao->allpagos();
+error_reporting(E_ALL ^ E_DEPRECATED);
+    ob_start();
+    session_start();
 ?>
 <head>
     <meta charset="utf-8" />
@@ -97,7 +100,7 @@ $pagos = $objpagosDao->allpagos();
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#pablo">
-                            <span class="no-icon">Perfil</span>
+                            <span class="no-icon"><?php echo $_SESSION["usuario"]["nombres"].' '.$_SESSION["usuario"]["apellidos"] ?></span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -134,94 +137,71 @@ $pagos = $objpagosDao->allpagos();
                             <h4 class="card-title">Pagos</h4>
                         </div>
                         <div class="card-header ">
-                            <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
+                            <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearPago"> <i class="fas fa-plus"></i></button>
                         </div>
                         
-<!-------------------------------------------Nuevo pago--------------------------------------------------------------------------------------------------------->
 
-
-                        <div class="modal" id="modalCrearUsuario" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <strong class="modal-title" id="modalCrearUsuarioLabel">Nuevo Cliente</strong>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                      <form method="post" action="../../control/accion/act_insertarUsuario.php">
-                                          <div class="modal-body" >
-                                             <section>
-                                                  <div class="form-group col-md-12">
-                                                      <label for="nombre">Nombres:</label>
-                                                      <input class="form-control form-control-sm" type="text" placeholder="Nombre" id="nombre" REQUIRED name="apellido">
-                                                  </div>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="fN">Apellidos:</label>
-                                                     <input class="form-control form-control-sm" type="text" placeholder="Apellidos" id="ape
-                                            " REQUIRED name="fNacimiento">
-                                                  </div>
-                                              </section>
-                                              <section>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="Nombre">Nombre:</label>
-                                                     <input class="form-control form-control-sm" type="text" placeholder="Nombre" id="Nombre" REQUIRED name="nombre">
-                                                  </div>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="Apellido">Apellido:</label>
-                                                     <input class="form-control form-control-sm" type="text" placeholder="Apellido" id="Apellido" REQUIRED name="apellido">
-                                                  </div>
-                                              </section>
-                                              <section>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="usuario">Usuario:</label>
-                                                     <input class="form-control form-control-sm" placeholder="Usuario" type="text" id="usuario" REQUIRED name="usuario">
-                                                  </div>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="contra">Contraseña:</label>
-                                                     <input class="form-control form-control-sm" placeholder="Contraseña" type="password" id="contra" REQUIRED name="password">
-                                                  </div>
-                                              </section>
-                                              <section>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="email">Correo Electrónico:</label>
-                                                     <input class="form-control form-control-sm" placeholder="Correo" type="email" id="email" REQUIRED name="email">
-                                                  </div>
-                                                  <div class="form-group col-md-12">
-                                                     <label for="telefono">Teléfono:</label>
-                                                     <input class="form-control form-control-sm" placeholder="Teléfono" type="number" id="telefono" REQUIRED name="telefono">
-                                                  </div>
-                                              </section>
-                                              <section>
-                                                  <div class="form-group col-md-12">
-                                                    <label>Género:</label>
-                                                    <div>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="genero" value="M"> Masculino
-                                                        </label>
-                                                        <label class="radio-inline">
-                                                            <input type="radio" name="genero" value="F"> 
-                                                            Femenino
-                                                        </label>
-                                                    </div>
-                                                  </div>
-                                                  <div class="form-group ">
-                                                     <label>Tipo:</label>
-                                                      <select class="form-control" id="tipo" name="tipoUser">
-                                                          <option value="3">Huesped</option>
-                                                      </select>
-                                                  </div>
-                                              </section>
-                                          </div>
-                                          <div class="modal-footer">
-                                             <input type="submit" class="btn btn-primary">
-                                          </div>
-                                      </form>
-                                    </div>
-                                  </div>
-                                </div>
-<!---------------------------------------  Fin pago-------------------------------------------------------------------------------------------------------------->
-                        
+<!-------------------------------------------Nuevo Prestamo--------------------------------------------------------------------------------------------------------->
+<div class="modal" id="modalCrearPago" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <strong class="modal-title" id="modalCrearUsuarioLabel">Crear Pago</strong>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <form method="post" action="../../control/accion/act_insertarUsuario.php">
+                  <div class="modal-body" >
+                     <section>
+                         <div class="form-group col-md-12">
+                             <label>Prestamo</label>
+                             <select class="form-control" id="selectPrestamo" onchange="cargarDataP()">
+                                 <option value="0">Seleccione un prestamo</option>
+                            </select>
+                         </div>
+                     </section>
+                     <section>
+                          <div class="form-group col-md-12">
+                             <label for="valorPrestamo">Cliente:</label>
+                             <input class="form-control" min="1" type="text" id="cliente" disabled/>
+                          </div>
+                     </section>
+                     <section>
+                          <div class="form-group col-md-12">
+                             <label for="valorPrestamo">Valor Prestamo:</label>
+                             <input class="form-control" min="1" type="number" id="valorPrestamo" disabled/>
+                          </div>
+                     </section>
+                     <section>
+                          <div class="form-group col-md-12">
+                             <label for="tasasInteres">Interes:</label>
+                             <input class="form-control" max-length="2" type="text" id="tasasInteres" disabled/>
+                          </div>
+                     </section>
+                     <section>
+                          <div class="form-group col-md-12">
+                             <label for="tasasInteres">Valor a pagar:</label>
+                             <input class="form-control" max-length="2" type="text" id="valorPorPagar" />
+                          </div>
+                     </section>
+                     <section>
+                          <div class="form-group col-md-12">
+                             <label for="cuotas">Cuotas:</label>
+                             <input class="form-control" type="text" id="cuotas" disabled/>
+                          </div>
+                     </section>
+                  </div>
+                  <section>
+                    <div class="modal-footer" id="buttonsave">
+                        <button type="button" class="btn btn-primary" id="crearbtn" onclick="crearPagos()">Guardar</button>
+                    </div>
+                  </section>
+              </form>
+            </div>
+          </div>
+        </div>
+<!---------------------------------------  Fin prestamo-------------------------------------------------------------------------------------------------------------->
                         
                         <div class="card-body table-full-width table-responsive">
                             <table class="table responsive boarde">
@@ -232,7 +212,7 @@ $pagos = $objpagosDao->allpagos();
                                         <th scope="col">Fecha Pago</th>
                                         <th scope="col">Prestamo</th>
                                         <th scope="col">Cliente</th>
-                                        <th scope="col">Editar</th>
+                                        <!--<th scope="col">Editar</th>-->
                                     </tr>
                                     <tbody>
                                             <?php foreach ($pagos as $pa): ?> 
@@ -241,12 +221,12 @@ $pagos = $objpagosDao->allpagos();
                                             <th scope="row"><?php echo $pa->getvalorPago(); ?></th>
                                             <th scope="row"><?php echo $pa->getfechaPago(); ?></th>
                                             <th scope="row"><?php echo $pa->getidPrestamos(); ?></th>
-                                            <th scope="row"><?php echo $pa->getClientes_idUsuarios(); ?></th>
-                                            <th scope="row">
-                                                <button class="btn btn-info">
-                                                    <i class="far fa-edit"></i>
-                                                </button>
-                                            </th>
+                                            <th scope="row"><?php echo $pa->getidUsuarios(); ?></th>
+                                            <!--<th scope="row">-->
+                                            <!--    <button class="btn btn-info">-->
+                                            <!--        <i class="far fa-edit"></i>-->
+                                            <!--    </button>-->
+                                            <!--</th>-->
                                         </tr>
                                         <?php endforeach ?>
                                     </tbody>
@@ -311,5 +291,10 @@ $pagos = $objpagosDao->allpagos();
 <script src="../assets/js/light-bootstrap-dashboard.js?v=2.0.1" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
 <script src="../assets/js/demo.js"></script>
+<!--Pagos-->
+<script src="../assets/js/pagos.js"></script>
 
+<script type="text/javascript">
+    getPrestamos();
+</script>
 </html>

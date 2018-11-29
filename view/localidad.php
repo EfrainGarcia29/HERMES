@@ -5,6 +5,9 @@
 require_once('../dao/localidadDAO.php');
 $objlocalidadDao = new localidadDAO(); 
 $localidad = $objlocalidadDao->alllocalidad();
+error_reporting(E_ALL ^ E_DEPRECATED);
+    ob_start();
+    session_start();
 ?>
 <head>
     <meta charset="utf-8" />
@@ -97,7 +100,7 @@ $localidad = $objlocalidadDao->alllocalidad();
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#pablo">
-                            <span class="no-icon">Perfil</span>
+                            <span class="no-icon"><?php echo $_SESSION["usuario"]["nombres"].' '.$_SESSION["usuario"]["apellidos"] ?></span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">

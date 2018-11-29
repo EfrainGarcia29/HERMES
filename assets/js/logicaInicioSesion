@@ -1,0 +1,24 @@
+document.querySelector('#btIngresar').addEventListener('click', inicioSesion);
+
+function inicioSesion () {
+	var sUsuario = '';
+	var sContrasena = '';
+	var bAcceso = false;
+	sUsuario = document.querySelector('#txtusuario').value;
+	sContrasena = document.querySelector('#txtpassword').value;
+
+	bAcceso = validarCredenciales(sUsuario, sContrasena);
+	
+	if (bAcceso == true) {
+		ingresar();
+	}
+}
+function ingresar(){
+	var rol = sessionStorage.getItem('rolUsuario');
+	switch(rol){
+	case '1':
+	window.location='../view/clientes.php';
+	break;
+	}
+}
+

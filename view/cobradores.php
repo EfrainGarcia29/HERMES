@@ -1,9 +1,13 @@
 <html lang="en">
 <?php 
+
 include('../dao/localidadDAO.php');
 require_once('../dao/cobradoresDAO.php');
 $objusuariosDao = new cobradoresDAO(); 
 $usuarios = $objusuariosDao->allCobradores();
+error_reporting(E_ALL ^ E_DEPRECATED);
+    ob_start();
+    session_start();
 ?>
 
 <head>
@@ -18,7 +22,7 @@ $usuarios = $objusuariosDao->allCobradores();
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
     <!-- CSS Files -->
-    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="../assets/css/light-bootstrap-dashboard.css?v=2.0.1" rel="stylesheet" />
     <!-- CSS Just for demo purpose, don't include it in your project -->
     <link href="../assets/css/demo.css" rel="stylesheet" />
@@ -94,7 +98,7 @@ $usuarios = $objusuariosDao->allCobradores();
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="#pablo">
-                            <span class="no-icon">Perfil</span>
+                            <span class="no-icon"><?php echo $_SESSION["usuario"]["nombres"].' '.$_SESSION["usuario"]["apellidos"] ?></span>
                         </a>
                     </li>
                     <li class="nav-item dropdown">
@@ -120,7 +124,7 @@ $usuarios = $objusuariosDao->allCobradores();
         </div>
     </nav>
     <!-- End Navbar -->
-    <div class="content">
+     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -131,7 +135,7 @@ $usuarios = $objusuariosDao->allCobradores();
                         
 <!-------------------------------------  Nuevo cobrador  ------------------------------------------------------------------------------------------------------------------------------->
                         <div class="card-header ">
-                        <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario" onclick="crearC()"> <i class="fas fa-plus"></i></button>
+                        <button class="btn btn-success" onclick="nuevoCobrador();"  data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
                         </div>
                          <div class="modal" id="modalCrearUsuario" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
                                   <div class="modal-dialog" role="document">
@@ -201,88 +205,17 @@ $usuarios = $objusuariosDao->allCobradores();
                         </div>
                         
 <!-----------------------------------------Fin cobrador  ------------------------------------------------------------------------------------------------------------------------------->
-                        <!-------------------------------------  Editar cobrador  ------------------------------------------------------------------------------------------------------------------------------->
-                       
-                         <div class="modal" id="modalEditarUsuario" tabindex="-1" role="dialog" aria-labelledby="modalEditarUsuarioLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <strong class="modal-title" id="modalEditarUsuarioLabel">Editar Cobrador</strong>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                      </div>
-                                          <div class="modal-body" >
-                                             <section>
-                                                  <div class="form-group col-md-12">
-                          <label for="nombre">Nombres:</label>
-                          <input class="form-control form-control-sm" type="text" placeholder="Nombres" id="nombres" REQUIRED name="nombre">
-                        </div>
-                        <div class="form-group col-md-12">
-                         <label for="fN">Apellidos:</label>
-                         <input class="form-control form-control-sm" type="text" placeholder="Apellidos" id="apellidos" REQUIRED name="apellido">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="usuario">Usuario:</label>
-                         <input class="form-control form-control-sm" placeholder="Usuario1" type="text" id="usuario1" REQUIRED name="usuario">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="contra">Password:</label>
-                         <input class="form-control form-control-sm" placeholder="Contraseña" type="password1" id="password" REQUIRED name="password">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="email">Correo Electrónico:</label>
-                         <input class="form-control form-control-sm" placeholder="Correo" type="email" id="email1" REQUIRED name="email">
-                       </div>
-
-                       <div class="form-group col-md-12">
-                         <label for="Nombre">Img:</label>
-                         <input class="form-control form-control-sm" type="file" placeholder="img" id="img1">
-                       </div>
-                        <div class="form-group col-md-12">
-                         <label for="Nombre">Cedula:</label>
-                         <input class="form-control form-control-sm" type="number" placeholder="cedula" id="cedula1" REQUIRED name="cedula">
-                       </div>
-                       <div class="form-group col-md-12">
-                         <label for="Nombre">Telefono:</label>
-                         <input class="form-control form-control-sm" type="number" placeholder="telefono" id="telefono1" REQUIRED name="telefono">
-                       </div>
-                       <div class="form-group col-md-12">
-                            <label>Localidades</label>
-                            <select class="form-control" id="selectLocalidad" name="tipoUser">
-                                <option value="0">Seleccione una localidad</option>
-                            </select>                          
-                        </div>
-                       <div class="form-group col-md-12">
-                            <label>Estado</label>
-                            <select class="form-control" id="selectEstados" name="tipoUser">
-                                <option value="0">Seleccione estado</option>
-                            </select>                          
-                        </div>
-                        </div>
-                        <div class="modal-footer">
-                             <button type="button" onclick="editarCobradores(1)" class="btn btn-primary">Guardar</button>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        
-<!-----------------------------------------fin Editar cobrador  ------------------------------------------------------------------------------------------------------------------------------->
-                        
+                  
                         
                         
                         <div class="card-body table-full-width table-responsive">
-                            <table class="table responsive boarde">
-                            <thead class="table-info">
-                                 <tr style="color: #FFFFFF">
+                           <table class="table responsive boarde">
+                            <thead class="bg-info">
+                                <tr style="color: #FFFFFF">
                                     <th scope="col">#</th>
                                     <th scope="col">Nombres</th>
                                     <th scope="col">Apellidos</th>
                                     <th scope="col">Cedula</th>
-                                    <th scope="col">Celular</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Usuario</th>
                                     <th scope="col">Password</th>
@@ -294,17 +227,16 @@ $usuarios = $objusuariosDao->allCobradores();
                                 <tbody>
                                    <?php foreach ($usuarios as $usuario): ?> 
                                 <tr style="cursor: pointer;" onclick="console.log('efra')" id="fila<?php echo $usuario->getidUsuarios(); ?>">
-                                <th scope="row"><?php echo $usuario->getidUsuarios(); ?></th>
-                                <th scope="row"><?php echo $usuario->getnombres(); ?></th>
-                                <th scope="row"><?php echo $usuario->getapellidos(); ?></th>
-                                <th scope="row"><?php echo $usuario->getcedula(); ?></th>
-                                <th scope="row"><?php echo $usuario->gettelefono(); ?></th>
-                                <th scope="row"><?php echo $usuario->getemail(); ?></th>
-                                <th scope="row"><?php echo $usuario->getusuario(); ?></th>
-                                <th scope="row"><?php echo $usuario->getpassword(); ?></th>
-                                <th scope="row"><?php echo $usuario->getestado(); ?></th>
-                                <th scope="row"><?php echo $usuario->getnombre(); ?></th>
-                                <th scope="row">
+                                <th scope="row" class="text_td"><?php echo $usuario->getidUsuarios(); ?></th>
+                                <th scope="row" class="text_td"><?php echo $usuario->getnombres(); ?></th>
+                                <th scope="row" class="text_td"><?php echo $usuario->getapellidos(); ?></th>
+                                <th scope="row" class="text_td"><?php echo $usuario->getcedula(); ?></th>
+                                <th scope="row" class="text_td"><?php echo $usuario->getemail(); ?></th>
+                                <th scope="row" class="text_td"><?php echo $usuario->getusuario(); ?></th>
+                                <th scope="row" class="text_td"><?php echo $usuario->getpassword(); ?></th>
+                                <th scope="row" class="text_td"><?php echo $usuario->getestado(); ?></th>
+                                <th scope="row" class="text_td"><?php echo $usuario->getidLocalidad(); ?></th>
+                                <th scope="row" class="text_td">
                                             <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearUsuario" onclick="getCobrador(<?php echo $usuario->getidUsuarios(); ?>)">
                                                     <i class="far fa-edit"></i>
                                                 </button>

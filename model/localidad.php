@@ -2,8 +2,8 @@
 
 class Localidad
 	{
-		private $idLocalidad;
-		private $nombre;
+		public $idLocalidad;
+		public $nombre;
 
 		public function __construct($idLocalidad, $nombre){
 

@@ -1,20 +1,20 @@
 <?php 
 
-class pagos
+class Pagos
 	{
 		private $idPago;
 		private $valorPago;
 		private $fechaPago;
 		private $idPrestamos;
-		private $Clientes_idUsuarios;
+		private $idUsuarios;
 
-		public function __construct($idPago, $valorPago, $fechaPago,$idPrestamos,$Clientes_idUsuarios){
+		public function __construct($idPago, $valorPago, $fechaPago,$idPrestamos,$idUsuarios){
 
 			$this->idPago = $idPago;
 			$this->valorPago = $valorPago;
 			$this->fechaPago = $fechaPago;
 			$this->idPrestamos = $idPrestamos;
-			$this->Clientes_idUsuarios = $Clientes_idUsuarios;
+			$this->idUsuarios = $idUsuarios;
 			
 			
 			
@@ -51,12 +51,12 @@ class pagos
 			$this->idPrestamos = $idPrestamos;
 		}
 		
-		public function getClientes_idUsuarios() {
-			return $this->Clientes_idUsuarios;
+		public function getidUsuarios() {
+			return $this->idUsuarios;
 		}
 
-		public function setClientes_idUsuarios($Clientes_idUsuarios) {
-			$this->Clientes_idUsuarios = $Clientes_idUsuarios;
+		public function setidUsuarios($idUsuarios) {
+			$this->idUsuarios = $idUsuarios;
 		}
 	}
  ?>

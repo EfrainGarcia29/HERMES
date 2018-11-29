@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <?php 
-require_once('../dao/clientesDAO.php');
-$objusuariosDao = new clientesDAO(); 
-$usuarios = $objusuariosDao->allUsuarios();
+require_once('../dao/cobradoresDAO.php');
+error_reporting(E_ALL ^ E_DEPRECATED);
+ob_start();
+session_start();
+$objusuariosDao = new CobradoresDAO(); 
+$usuarios = $objusuariosDao->allCobradores();
 ?>
 <html lang="en">
 
@@ -27,25 +30,117 @@ $usuarios = $objusuariosDao->allUsuarios();
 </head>
 
 <body>
-  <div class="row">
-    <div class="col-md-4">Inicio</div>
-    <div class="col-md-4">prestamo</div>
-    <div class="col-md-4">Credito<div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse"
-            data-target=".navbar-ex1-collapse">
-      <span class="sr-only">Desplegar navegación</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </button>
-    <a class="navbar-brand" href="#">Logotipo</a>
-  </div></div>
-    
+  <div class="wrapper">
+    <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
+      <div class="sidebar-wrapper">
+        <div class="logo">
+          <a href="./vClientes.php" class="simple-text">
+           Informacion cliente 
+         </a>
+       </div>
+       <ul class="nav">
+      <li>
+        <a class="nav-link" href="./pagoC.php">
+          <i class="fas fa-hand-holding-usd"></i>
+          <p>Pagos</p>
+        </a>
+      </li>
+    </ul>
+  </div>
 </div>
-   
-
+<div class="main-panel">
+  <!--------------------------------------------------------- Parte Superior ----------------------------------------------------------------------------------->
+  <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+    <div class=" container-fluid  ">
+      <a class="navbar-brand" href="#pablo">Clientes</a>
+      <button href="" class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-bar burger-lines"></span>
+        <span class="navbar-toggler-bar burger-lines"></span>
+        <span class="navbar-toggler-bar burger-lines"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <ul class="nav navbar-nav mr-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-toggle="dropdown">
+              <i class="nc-icon nc-palette"></i>
+              <span class="d-lg-none">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nc-icon nc-zoom-split"></i>
+              <span class="d-lg-block">&nbsp;Search</span>
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#pablo">
+              <span class="no-icon"><?php echo $_SESSION["usuario"]["nombres"].' '.$_SESSION["usuario"]["apellidos"] ?></span>
+            </a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="no-icon">Historial</span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+              <div class="divider"></div>
+              <a class="dropdown-item" href="#">Separated link</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.php">
+              <span class="no-icon">Cerrar Sesion</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+ <!--------------------------------------------------------- Parte Superior fin ----------------------------------------------------------------------------------->
+ 
+  <!--------------------------------------------------------- Informacion respecto a los "clientes"------------------------------------------------------------------>
   
+
+  <!---------------------------------------------------------Fin Informacion respecto a los "clientes"------------------------------------------------------------------>
+
+  <!--------------------------------------------------------- Parte Inferior------------------------------------------------------------------>
+<footer class="footer">
+  <div class="container col-md-12">
+    <nav>
+      <ul class="footer-menu">
+        <li>
+          <a href="#">
+            Home
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Company
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Portfolio
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Blog
+          </a>
+        </li>
+      </ul>
+  </div>
+</footer>
+</div>
+</div>
 </body>
+
+  <!--------------------------------------------------------- Fin parte inferior------------------------------------------------------------------>
 <!--   Core JS Files   -->
 <script src="../assets/js/core/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="../assets/js/core/popper.min.js" type="text/javascript"></script>

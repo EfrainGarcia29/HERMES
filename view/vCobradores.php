@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <?php 
 require_once('../dao/cobradoresDAO.php');
+error_reporting(E_ALL ^ E_DEPRECATED);
+ob_start();
+session_start();
 $objusuariosDao = new CobradoresDAO(); 
 $usuarios = $objusuariosDao->allCobradores();
 ?>
@@ -31,19 +34,19 @@ $usuarios = $objusuariosDao->allCobradores();
     <div class="sidebar" data-image="../assets/img/sidebar-5.jpg">
       <div class="sidebar-wrapper">
         <div class="logo">
-          <a href="http://www.creative-tim.com" class="simple-text">
-           Rutas 
+          <a href="vCobradores.php" class="simple-text">
+           Cobradores 
          </a>
        </div>
        <ul class="nav">
       <li>
-        <a class="nav-link" href="./pagos.php">
+        <a class="nav-link" href="./pagoCo.php">
           <i class="fas fa-hand-holding-usd"></i>
           <p>Pagos</p>
         </a>
       </li>
       <li>
-        <a class="nav-link" href="./localidad.php">
+        <a class="nav-link" href="./vRutas.php">
           <i class="fas fa-globe-africa"></i>
           <p>Rutas</p>
         </a>
@@ -79,7 +82,7 @@ $usuarios = $objusuariosDao->allCobradores();
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="#pablo">
-              <span class="no-icon">Perfil</span>
+              <span class="no-icon"><?php echo $_SESSION["usuario"]["nombres"].' '.$_SESSION["usuario"]["apellidos"] ?></span>
             </a>
           </li>
           <li class="nav-item dropdown">
@@ -96,7 +99,7 @@ $usuarios = $objusuariosDao->allCobradores();
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="index.php">
+            <a class="nav-link" href="../index.php">
               <span class="no-icon">Cerrar Sesion</span>
             </a>
           </li>
@@ -115,7 +118,7 @@ $usuarios = $objusuariosDao->allCobradores();
 
 
             <div class="card-header ">
-              <h4 class="card-title">Cobradores</h4>
+              <h4 class="card-title">Clientes</h4>
             </div>
            
 
@@ -128,11 +131,12 @@ $usuarios = $objusuariosDao->allCobradores();
                 <th scope="col">Apellidos</th>
                 <th scope="col">Cedula</th>
                 <th scope="col">Direccion</th>
-                <th scope="col">Email</th>
+                <th scope="col">Registrar pago</th>
+               <!-- <th scope="col">Email</th>
                 <th scope="col">User</th>
                 <th scope="col">Password</th>
                 <th scope="col">Editar</th>
-                <th scope="col">Eliminar</th>
+                <th scope="col">Eliminar</th> -->
               </tr>
               <tbody>
                 <?php foreach ($usuarios as $usuario): ?> 
@@ -141,10 +145,15 @@ $usuarios = $objusuariosDao->allCobradores();
                     <th scope="row"><?php echo $usuario->getnombres(); ?></th>
                     <th scope="row"><?php echo $usuario->getapellidos(); ?></th>
                     <th scope="row"><?php echo $usuario->getcedula(); ?></th>
-                    <th scope="row"><?php echo $usuario->getdireccion(); ?></th>
+                    <th scope="row">
+                      </th>
+                    <th scope="row">
+                    <button class="btn btn-success" data-toggle="modal" data-target="#modalregistropago" onclick="crear()"> <i class="fas fa-plus"></i></button>
+                  </th>
+                   <!-- <th scope="row"><?php echo $usuario->getdireccion(); ?> </th> 
                     <th scope="row"><?php echo $usuario->getemail(); ?></th>
                     <th scope="row"><?php echo $usuario->getusuario(); ?></th>
-                    <th scope="row"><?php echo $usuario->getpassword(); ?></th>
+                    <th scope="row"><?php echo $usuario->getpassword(); ?></th> -->
 
 
                     <th scope="row">

@@ -15,7 +15,7 @@ class Usuarios
 			return $this->idTipoUsuarios;
 		}
 
-		public function setidTipoUsuarios($idTipoUsuarios {
+		public function setidTipoUsuarios($idTipoUsuarios) {
 			$this->idTipoUsuarios = $idTipoUsuarios;
 		}
 

@@ -1,4 +1,6 @@
 function crearCobrador() {
+	var idLocalidad = $('#selectLocalidad').val();
+	var idEstado = $('#selectEstados').val();
     var data = {
     'nombres' : $('#nombre').val(),
     'apellidos': $('#apellido').val(),
@@ -7,10 +9,10 @@ function crearCobrador() {
     'email': $('#email').val(),
     'img': $('#img').val(),
     'idTipoUsuario': '2',
-    'telefono' : $('#telefono').val(),
     'cedula' : $('#cedula').val(),
-    'idEstado' : $('#selectEstados').val(),
-    'idLocalidad' : $('#selectLocalidad').val()
+    'telefono' : $('#telefono').val(),
+    'idEstado' : idEstado,
+    'idLocalidad' : idLocalidad
     
   }
   
@@ -69,6 +71,8 @@ function getEstados(){
 
 
 function editarCobrador(id) {
+	var idLocalidad = $('#selectLocalidad').val();
+	var idEstado = $('#selectEstados').val();
     var data = {
     'nombres' : $('#nombre').val(),
     'apellidos': $('#apellido').val(),
@@ -77,10 +81,10 @@ function editarCobrador(id) {
     'email': $('#email').val(),
     'img': $('#img').val(),
     'idTipoUsuario': '2',
-    'telefono' : $('#telefono').val(),
     'cedula' : $('#cedula').val(),
-    'idEstado' : $('#selectEstados').val(),
-    'idLocalidad' : $('#selectLocalidad').val(),
+    'telefono' : $('#telefono').val(),
+    'idEstado' : idEstado,
+    'idLocalidad' : idLocalidad,
     'id' : id
     
   }
@@ -114,9 +118,9 @@ function getCobrador(id){
 		    $('#usuario').val(data[0]['usuario']);
 		    $('#password').val(data[0]['password']);
 		    $('#email').val(data[0]['email']);
-		    $('#img').val(data[0]['img']);
-		    $('#telefono').val(data[0]['telefono']);
+		    $('#img').val('');
 		    $('#cedula').val(data[0]['cedula']);
+		    $('#telefono').val(data[0]['telefono']);
 		    $('#selectEstados').val(data[0]['idEstado']);
 		    $('#selectLocalidad').val(data[0]['idLocalidad']);
 		    $('#buttonsave').html('<button type="button" class="btn btn-primary" id="editarbtn" onclick="editarCobrador('+id+')">Guardar</button>');
@@ -125,15 +129,16 @@ function getCobrador(id){
 }
 
 
-function crearC(){
-    $('#nombre').empty();
-    $('#apellido').empty();
-    $('#usuario').empty();
-    $('#password').empty();
-    $('#email').empty();
-    $('#img').empty();
-    $('#telefono').empty();
-    $('#cedula').empty();
+function nuevoCobrador(){
+	console.log('entre');
+    $('#nombre').val('');
+    $('#apellido').val('');
+    $('#usuario').val('');
+    $('#password').val('');
+    $('#email').val('');
+    $('#img').val('');
+    $('#telefono').val('');
+    $('#cedula').val('');
     $('#selectEstados').val('0');
     $('#selectLocalidad').val('0');
     $('#buttonsave').html('<button type="button" class="btn btn-primary" id="crearbtn" onclick="crearCobrador()">Guardar</button>');
@@ -141,7 +146,7 @@ function crearC(){
 	
 function deleteCobrador(id){
     $('#btnEliminar'+id).prop('disabled', true);
-    $('#nombrelocalidad').empty();
+    $('#nombrelocalidad').val('');
     $.ajax({
 		type: "POST",
 		url: '/controller/cobradoresController.php?deleteCobrador',

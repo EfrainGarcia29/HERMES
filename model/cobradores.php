@@ -8,10 +8,10 @@ class Cobradores extends Usuarios
 		private $cedula;
 		private $telefono;
 		private $estado;
-		private $nombre;
+		private $idLocalidad;
 		
 
-		public function __construct($idUsuarios, $nombres, $apellidos, $cedula, $telefono, $email, $usuario, $password, $estado, $nombre){
+		public function __construct($idUsuarios, $nombres, $apellidos, $cedula, $telefono, $email, $usuario, $password, $estado, $idLocalidad){
 
 			$this->idUsuarios = $idUsuarios;
 			$this->nombres = $nombres;
@@ -22,7 +22,7 @@ class Cobradores extends Usuarios
 			$this->usuario = $usuario;
 			$this->password = $password;
 			$this->estado = $estado;
-			$this->nombre = $nombre;
+			$this->idLocalidad = $idLocalidad;
 		}
 
 		public function getidUsuarios() {
@@ -57,12 +57,12 @@ class Cobradores extends Usuarios
 			$this->estado = $estado;
 		}
 		
-		public function getnombre() {
-			return $nombre->nombre;
+		public function getidLocalidad() {
+			return $this->idLocalidad;
 		}
 
-		public function setnombre($nombre) {
-			$this->nombre = $nombre;
+		public function setidLocalidad($idLocalidad) {
+			$this->idLocalidad = $idLocalidad;
 		}
 	}
  ?>

@@ -1,16 +1,18 @@
 <?php 
 
-include ("usuarios.php");
 
-class Clientes extends Usuarios  
-	{
+include ('usuarios.php');
+
+
+class Clientes extends Usuarios {
 		private $idUsuarios;
 		private $direccion;
 		private $cedula;
+		private $idLocalidad;
 
 		
 		
-		public function __construct($idUsuarios, $nombres, $apellidos, $cedula, $direccion, $email, $usuario, $password){
+		public function __construct($idUsuarios, $nombres, $apellidos, $cedula, $direccion, $email, $usuario, $password, $idLocalidad){
 
 			$this->idUsuarios = $idUsuarios;
 			$this->nombres = $nombres;
@@ -20,6 +22,7 @@ class Clientes extends Usuarios
 			$this->email = $email;
 			$this->usuario = $usuario;
 			$this->password = $password;
+			$this->idLocalidad = $idLocalidad;
 		}
 
 		public function getidUsuarios() {
@@ -44,6 +47,13 @@ class Clientes extends Usuarios
 
 		public function setdireccion($direccion) {
 			$this->direccion = $direccion;
+		}
+		public function getidLocalidad() {
+			return $this->idLocalidad;
+		}
+
+		public function setidLocalidad($idLocalidad) {
+			$this->idLocalidad = $idLocalidad;
 		}
 
 	}

@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <?php 
+error_reporting(E_ALL ^ E_DEPRECATED);
+ob_start();
+session_start();
 require_once('../dao/clientesDAO.php');
 $objusuariosDao = new clientesDAO(); 
 $usuarios = $objusuariosDao->allUsuarios();
@@ -97,7 +100,7 @@ $usuarios = $objusuariosDao->allUsuarios();
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="#pablo">
-              <span class="no-icon">Perfil</span>
+              <span class="no-icon"><?php echo $_SESSION["usuario"]["nombres"].' '.$_SESSION["usuario"]["apellidos"] ?></span>
             </a>
           </li>
           <li class="nav-item dropdown">
@@ -114,7 +117,7 @@ $usuarios = $objusuariosDao->allUsuarios();
             </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#pablo">
+            <a class="nav-link" href="../index.php">
               <span class="no-icon">Cerrar Sesion</span>
             </a>
           </li>
@@ -137,7 +140,7 @@ $usuarios = $objusuariosDao->allUsuarios();
 
             <!------------------------------------------------------------Modal--------------------------------------------------------------------------------------->
            <div class="card-header ">
-              <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario"> <i class="fas fa-plus"></i></button>
+              <button class="btn btn-success" data-toggle="modal" data-target="#modalCrearUsuario" onclick="nuevoCliente();"><i class="fas fa-plus"></i></button>
             </div>
             <div class="modal fade" id="modalCrearUsuario" tabindex="-1" role="dialog" aria-labelledby="modalCrearUsuarioLabel" aria-hidden="true">
               <div class="modal-dialog" role="document">
@@ -185,6 +188,11 @@ $usuarios = $objusuariosDao->allUsuarios();
                          <label for="usuario">Direccion:</label>
                          <input class="form-control form-control-sm" placeholder="Direccion" type="direccion" id="direccion" REQUIRED name="direccion">
                        </div>
+                       
+                        <div class="form-group col-md-12">
+                         <label for="Nombre">Cedula:</label>
+                         <input class="form-control form-control-sm" type="number" placeholder="cedula" id="cedula" REQUIRED name="cedula">
+                       </div>
 
                        <div class="form-group col-md-12">
                          <label for="Nombre">Telefono:</label>
@@ -192,17 +200,19 @@ $usuarios = $objusuariosDao->allUsuarios();
                        </div>
                        
                        <div class="form-group col-md-12">
-                         <label for="Nombre">Cedula:</label>
-                         <input class="form-control form-control-sm" type="number" placeholder="cedula" id="cedula" REQUIRED name="cedula">
-                       </div>
+                            <label>Localidades</label>
+                            <select class="form-control" id="selectLocalidad" name="tipoUser">
+                                <option value="0">Seleccione una localidad</option>
+                            </select>                          
+                        </div>
 
                        
                        
                      </div>
                    </div>
-                   <div class="modal-footer">
-                     <button type="button" onclick="crearCliente()" class="btn btn-primary">Enviar</button>
-                   </div>
+                        <div class="modal-footer" id="buttonsave">
+                             
+                        </div>
                  </form>
                </div>
              </div>
@@ -222,6 +232,7 @@ $usuarios = $objusuariosDao->allUsuarios();
                 <th scope="col">Email</th>
                 <th scope="col">User</th>
                 <th scope="col">Password</th>
+                <th scope="col">localidades</th>
                 <th scope="col">Editar</th>
                 <th scope="col">Eliminar</th>
               </tr>
@@ -236,16 +247,17 @@ $usuarios = $objusuariosDao->allUsuarios();
                     <th scope="row"><?php echo $usuario->getemail(); ?></th>
                     <th scope="row"><?php echo $usuario->getusuario(); ?></th>
                     <th scope="row"><?php echo $usuario->getpassword(); ?></th>
+                    <th scope="row"><?php echo $usuario->getidLocalidad(); ?></th>
 
 
                     <th scope="row">
-                      <button class="btn btn-info">
-                        <i class="far fa-edit"></i>
-                      </button>
+                    <button class="btn btn-info" data-toggle="modal" data-target="#modalCrearUsuario" onclick="getClientes(<?php echo $usuario->getidUsuarios(); ?>)">
+                      <i class="far fa-edit"></i>
+                    </button>
                     </th>
                     <th scope="row">
-                      <button type="button" class="btn btn-danger">
-                        <i class="far fa-trash-alt"></i>
+                      <button type="button" class="btn btn-danger" id="btnEliminar<?php  echo $usuario->getidUsuarios(); ?>"  onclick="deleteClientes(<?php  echo $usuario->getidUsuarios();  ?>)">
+                                                <i class="far fa-trash-alt"></i>
                       </button>
                     </th>
                   </tr>
@@ -308,5 +320,8 @@ $usuarios = $objusuariosDao->allUsuarios();
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <!-- Clientes JS! -->
 <script src="../assets/js/clientes.js"></script>
-
+<script src="../assets/js/localidad.js"></script>
+<script>
+    getLocalidades();
+</script>
 </html>

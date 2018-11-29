@@ -7,13 +7,13 @@ class cobradoresDAO
 	public function allCobradores(){
 		$db = Db::conectar();
 		$usuarios = [];
-		$user = $db->query("SELECT u.idUsuarios, u.nombres, u.apellidos, c.cedula, c.telefono, u.email, u.usuario, u.password, e.estado, l.nombre FROM usuarios as u 
+		$user = $db->query("SELECT u.idUsuarios, u.nombres, u.apellidos, c.cedula, c.telefono, u.email, u.usuario, u.password, e.estado, l.nombre as nombrelocalidad FROM usuarios as u 
 			INNER JOIN cobradores as c  
 			ON u.idUsuarios = c.idUsuarios 
 			INNER JOIN estados as e 
 			ON c.idEstado = e.idEstado 
 			LEFT JOIN localidades as l
-			ON l.idLocalidad = c.idLocalidad 
+			ON c.idLocalidad = l.idLocalidad 
 			WHERE u.idTipoUsuario = '2'");
 		foreach ($user->fetchAll() as $us) {
 			$u = new Cobradores(
@@ -26,7 +26,7 @@ class cobradoresDAO
 				$us['usuario'],
 				$us['password'],
 				$us['estado'],
-				$us['nombre']
+				$us['nombrelocalidad']
 			);
 			$usuarios[]=$u;
 			
@@ -87,7 +87,7 @@ class cobradoresDAO
 		$query = $db->query("UPDATE usuarios  SET nombres = '$data[nombres]', apellidos = '$data[apellidos]', usuario = '$data[usuario]', password = '$data[password]', email = '$data[email]', img = '$data[img]', idTipoUsuario = '2' WHERE idUsuarios = '$data[id]'");
 		$query2=null;
 		if ($query) {
-			$query2 = $db->query("UPDATE cobradores  SET cedula = '$data[cedula]', telefono = '$data[telefono]', idEstado = '$data[id]', idLocalidad = '$data[id]' WHERE idUsuarios = '$data[id]'");
+			$query2 = $db->query("UPDATE cobradores  SET cedula = '$data[cedula]', telefono = '$data[telefono]', idEstado = '$data[idEstado]', idLocalidad = '$data[idLocalidad]' WHERE idUsuarios = '$data[id]'");
 			if ($query2){
 					$array= array('status'=>'success');
 			}else{
@@ -102,13 +102,14 @@ class cobradoresDAO
 	}
 	
 	
-	public function eliminarCobradores($data){
+	public function eliminarCobradores($id){
 
 		$db = Db::conectar();
 		$usuarios = [];
 		// 'aqui estoy';
 		//print_r($data);
-		$query = $db->query("DELETE FROM cobradores   WHERE idUsuarios = '$id'");
+		 echo "DELETE FROM cobradores  WHERE idUsuarios = '$id'";
+		$query = $db->query("DELETE FROM cobradores  WHERE idUsuarios = '$id'");
 		if ($query) {
 			$query2 = $db->query("DELETE FROM usuarios WHERE idUsuarios = '$id'");
 			if ($query2){

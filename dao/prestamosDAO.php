@@ -28,5 +28,40 @@ class PrestamosDAO
 		}
 		return $prestamos;
 	}
+	
+	public function insertarPrestamo($data){
+
+		$db = Db::conectar();
+		$usuarios = [];
+		$query = $db->query("INSERT INTO prestamos (prestamo, valorPorPagar, tasaInteres, cuota, fechaInicio, fechaFinal, idUsuarios, idEstadosPrestamos) 
+		VALUES ('$data[valorPrestamo]', '$data[valorPrestamo]', '$data[tasasInteres]', '$data[cuotas]', NOW(), NOW(), '$data[usuario]', '1')");
+		if ($query) {
+		
+		$array= array('status'=>'success');
+			
+		}else{
+			
+			$array= array('status'=>'failinsertoPrestamo');
+		}
+		
+		return print_r(json_encode($array));
+	}
+	
+	public function getPrestamos($id){
+
+		$db = Db::conectar();
+		$prestamos = [];
+		if ($id != 0) {
+			$prestamo = $db->query("SELECT * FROM prestamos LEFT JOIN usuarios ON prestamos.idUsuarios = usuarios.idUsuarios WHERE prestamos.idPrestamos = '$id'");
+		}else{
+			$prestamo = $db->query("SELECT * FROM prestamos LEFT JOIN usuarios ON prestamos.idUsuarios = usuarios.idUsuarios ");	
+		}
+		foreach ($prestamo->fetchAll() as $pre) {
+			$prestamos[]=$pre;
+	
+		}
+		print_r(json_encode($prestamos));
+	}
 }
+
 ?>

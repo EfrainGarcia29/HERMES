@@ -32,18 +32,17 @@ if (isset($_GET['getCobradores'])) {
 }
 
 if(isset($_GET['editarcobrador']) ){
-    
-    //print_r($_POST['data']);
+//print_r($_POST['data']);
 
-   if (isset($_POST['data'])) {
+  if (isset($_POST['data'])) {
      $data = $_POST['data'];
      $resultado = $objcobradoresDao->editarCobradores($data);
      return $resultado;
 
-   }else{
-       $array = array('status'=>'errorDeEnvio');
-       print_r(json_encode($array));
-   }
+  }else{
+      $array = array('status'=>'errorDeEnvio');
+      print_r(json_encode($array));
+  }
 }
 
 if(isset($_GET['deleteCobrador']) ){
